@@ -8,3 +8,5 @@ typing_extensions==4.8.0
 boto3==1.29.6
 django-storages==1.14.2
 eshop-cart==1.0.0
+pysqlite3
+pysqlite3-binary
