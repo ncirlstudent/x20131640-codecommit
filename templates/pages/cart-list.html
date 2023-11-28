@@ -1,0 +1,113 @@
+{% extends "layouts/base.html" %}
+{% load static cart_count %}
+
+{% block content %}
+
+<div class="row my-5">
+    <form method="post" action="{% url "checkout" %}" class="col-md-8 mx-auto">
+        {% csrf_token %}
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label" for=""></label>
+                            </div>
+                        </th>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Product Image</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                        <th>Unit Price</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cart in carts %}
+                    <tr>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" name="cart_item" type="checkbox" value="{{ cart.id }}" checked>
+                                <label class="form-check-label" for=""></label>
+                            </div>
+                        </td>
+                        <td>#{{ cart.product.id }}</td>
+                        <td>{{ cart.product.name }}</td>
+                        <td>
+                            <img width="40px" src="{{ cart.product.image.url }}" alt="">
+                        </td>
+                        <td>
+                            <div>
+                                <div class="mb-3 d-flex">
+                                    <a href="{% url "decrement_cart" cart.id %}" class="decrease px-2">-</a>
+                                    <input style="width: 30px;" readonly type="text" value="{{ cart.quantity }}" class="quantity text-center border-0" />
+                                    <a href="{% url "increment_cart" cart.id %}" class="increase px-2">+</a>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <a href="{% url "delete_cart_item" cart.id %}">
+                                    <i class="fa fa-trash text-danger"></i>
+                                </a>
+                            </div>
+                        </td>
+                        <td>${{ cart.product.price }}</td>
+                        <td>${{ cart.total_price }}</td>
+
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b>Total:</b></td>
+                        <td>${{ carts|total_cart_price }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-secondary mr-4">Checkout</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
+
+{% block extra_js %}
+
+<script>
+    // Get all the increase and decrease buttons and the quantity inputs
+    const increaseButtons = document.querySelectorAll('.increase');
+    const decreaseButtons = document.querySelectorAll('.decrease');
+    const quantityInputs = document.querySelectorAll('.quantity');
+    
+    // Add click event listeners to all the buttons
+    increaseButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            let currentQuantity = parseInt(quantityInputs[index].value);
+            quantityInputs[index].value = currentQuantity + 1;
+        });
+    });
+    
+    decreaseButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            let currentQuantity = parseInt(quantityInputs[index].value);
+            // Ensure quantity doesn't go below 1
+            if (currentQuantity > 1) {
+                quantityInputs[index].value = currentQuantity - 1;
+            }
+        });
+    });
+</script>
+
+
+{% endblock extra_js %}

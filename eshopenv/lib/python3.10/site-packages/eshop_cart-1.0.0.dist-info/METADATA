@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: eshop-cart
+Version: 1.0.0
+Summary: E-shop cart
+Author-email: Silicus <x20131640@student.ncirl.ie>
+Project-URL: Homepage, https://github.com/pypa/sampleproject
+Project-URL: Bug Tracker, https://github.com/pypa/sampleproject/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENCE
+
+The module contains several features that provide functionality for various aspects of eshop cart.
