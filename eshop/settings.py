@@ -36,8 +36,8 @@ SECRET_KEY = env.str('SECRET_KEY', 'sfjfjghf')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.str('DEBUG', True)
 
-ALLOWED_HOSTS = ['48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','x20131640.us-east-1.elasticbeanstalk.com']
-CSRF_TRUSTED_ORIGINS = ['https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','http://x20131640.us-east-1.elasticbeanstalk.com','https://x20131640.us-east-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','x20131640-app.us-east-1.elasticbeanstalk.com']
+CSRF_TRUSTED_ORIGINS = ['https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','http://x20131640-app.us-east-1.elasticbeanstalk.com/','https://x20131640-app.us-east-1.elasticbeanstalk.com/']
 
 
 # Application definition
