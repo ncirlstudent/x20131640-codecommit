@@ -46,9 +46,9 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category 
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="{% url "index" %}">Default</a>
+                  <a class="dropdown-item" href="{% url "index" %}">All</a>
                   {% for category in categories %}
-                   <a class="dropdown-item" href="?category={{category.slug}}">{{ category.name }}</a>
+                   <a class="dropdown-item" href="{% url 'index' %}?category={{ category.slug }}">{{ category.name }}</a>
                   {% endfor %}
                 </div>
              </div>
@@ -68,12 +68,7 @@
                    <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
                    <img src="{% static "images/flag-uk.png" %}" alt="flag" class="mr-2 " title="United Kingdom"> English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
                    </a>
-                   <div class="dropdown-menu ">
-                      <a href="#" class="dropdown-item">
-                      <img src="{% static "images/flag-france.png" %}" class="mr-2" alt="flag">
-                      French
-                      </a>
-                   </div>
+                  
                 </div>
                 <div class="login_menu">
                    <ul>

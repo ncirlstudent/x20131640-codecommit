@@ -14,11 +14,22 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class CartAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'product', 'quantity',)
+    list_display = ('id', 'user', 'product', 'quantity', 'purchased')
+    
+    
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'get_cart_info', 'billing', 'status', 'payment_method')
+
+    def get_cart_info(self, obj):
+        return ", ".join([f"{cart.product} (Qty: {cart.quantity})" for cart in obj.carts.all()])
+
+    get_cart_info.short_description = 'Cart Information'
+
+admin.site.register(Order, OrderAdmin)
 
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(BillingDetails)
-admin.site.register(Order)
+

@@ -5,6 +5,8 @@ from django.views.generic import ListView, DetailView
 from django.db.models import F, ExpressionWrapper, fields, Sum
 from product.forms import BillingForm
 from enum_helper import StatusChoices
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 # Create your views here.
@@ -15,7 +17,7 @@ class ProductDetailView(DetailView):
     model = Product
     slug_field = "slug"
 
-
+@login_required
 def add_to_cart(request):
     if request.method == 'POST':
         product = Product.objects.get(pk=request.POST.get('product'))
@@ -27,7 +29,7 @@ def add_to_cart(request):
         if not created:
             cart.quantity += quantity
             cart.save()
-    return redirect(request.META.get('HTTP_REFERER'))
+    return redirect('cart_list')
 
 
 class CartListView(ListView):
@@ -109,10 +111,14 @@ def place_order(request):
         if order:
             carts.update(purchased=True)
 
-        return redirect('/')
+        return redirect('order_sucessful')
 
     context = {
         'carts': carts,
         'billing_details': billing_details
     }
     return render(request, 'pages/checkout.html', context)
+
+def order_confirm(request):
+    
+    return render(request, 'pages/order-confirm.html')

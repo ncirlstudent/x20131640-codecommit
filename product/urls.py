@@ -14,4 +14,5 @@ urlpatterns = [
 
     path('create-billing/', views.create_billing, name='create_billing'),
     path('place-order/', views.place_order, name='place_order'),
+    path('order-confirm/', views.order_confirm, name='order_sucessful'),
 ]

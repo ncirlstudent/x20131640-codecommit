@@ -1,0 +1,76 @@
+{% extends "layouts/base.html" %}
+{% load static cart_count %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Completed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .order-confirmation {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FabricConnect</h1>
+    </header>
+
+    <main>
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="order-confirmation">
+                    <h1>Thank you for your order!</h1>
+                    <p>Your order has been successfully completed.</p>
+                    <p>Order Number: #123456</p>
+                    <p>Estimated delivery time: 3-5 business days.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2023 FabricConnect. All rights reserved.
+    </footer>
+</body>
+</html>
+
+
+{% endblock content %}
