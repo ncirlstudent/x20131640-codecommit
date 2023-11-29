@@ -1,6 +1,6 @@
 from django.contrib import admin
 from product.models import Product, Category, Cart, BillingDetails, Order
-import boto3
+
 
 # Register your models here.
 
@@ -17,7 +17,7 @@ class ProductAdmin(admin.ModelAdmin):
             sqs = boto3.client('sqs')
             queue_url = 'https://sqs.us-east-1.amazonaws.com/564782978045/sqs-products'
             # Message à envoyer
-            message_body = f'We have recently added a new product. Check out the new : {obj.name}'
+            message_body = f'Un nouveau produit a été ajouté: {obj.name}'
             response = sqs.send_message(
                             QueueUrl=queue_url,
                             MessageBody=message_body

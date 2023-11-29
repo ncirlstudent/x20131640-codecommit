@@ -27,3 +27,5 @@ https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com/admi
 
 Add new Library 
 pip install eshop-cart==1.0.0
+sqlite-devel
+pip install pysqlite3
