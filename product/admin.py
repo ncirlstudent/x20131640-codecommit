@@ -14,7 +14,7 @@ class ProductAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
         if not change:  
-            sqs = boto3.client('sqs')
+            sqs = boto3.client('sqs', region="us-east-1")
             queue_url = 'https://sqs.us-east-1.amazonaws.com/564782978045/sqs-products'
             # Message à envoyer
             message_body = f'We have recently added a new product. Check out the new : {obj.name}'
