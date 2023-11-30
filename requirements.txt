@@ -10,3 +10,4 @@ django-storages==1.14.2
 eshop-cart==1.0.0
 pysqlite3
 pysqlite3-binary
+gunicorn
