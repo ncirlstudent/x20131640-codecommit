@@ -34,7 +34,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env.str('SECRET_KEY', 'sfjfjghf')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.str('DEBUG', False)
+DEBUG = env.str('DEBUG', True)
 
 ALLOWED_HOSTS = ['48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','X20131640.us-east-1.elasticbeanstalk.com']
 CSRF_TRUSTED_ORIGINS = ['https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','http://X20131640.us-east-1.elasticbeanstalk.com','https://X20131640.us-east-1.elasticbeanstalk.com']
