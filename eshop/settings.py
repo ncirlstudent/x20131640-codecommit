@@ -36,7 +36,7 @@ SECRET_KEY = env.str('SECRET_KEY', 'sfjfjghf')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.str('DEBUG', True)
 
-ALLOWED_HOSTS = ['48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','x20131640-app.us-east-1.elasticbeanstalk.com','*']
+ALLOWED_HOSTS = ['48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','X20131640-app-env.eba-7ysadguy.us-east-1.elasticbeanstalk.com']
 CSRF_TRUSTED_ORIGINS = ['https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','http://x20131640-app.us-east-1.elasticbeanstalk.com','https://x20131640-app.us-east-1.elasticbeanstalk.com','http://x20131640-app-env.eba-7ysadguy.us-east-1.elasticbeanstalk.com','https://x20131640-app-env.eba-7ysadguy.us-east-1.elasticbeanstalk.com']
 
 
@@ -137,11 +137,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
+STATICFILES_DIRS = (
+  os.path.join(BASE_DIR, 'static/'),
+)
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-BASE_DIR / 'static'
-]
+
 # STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = 'media/'
