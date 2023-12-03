@@ -24,7 +24,7 @@ class RegistrationView(CreateView):
         return response
 
     def send_sns_subsription(self, user):
-        sns_client = boto3.client('sns')
+        sns_client = boto3.client('sns',region_name='us-east-1')
         response = sns_client.subscribe(
                 TopicArn='arn:aws:sns:us-east-1:564782978045:account-topic',
                 Protocol='email', 
