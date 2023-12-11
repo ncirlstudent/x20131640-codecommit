@@ -1,8 +1,19 @@
 
-voclabs:~/environment $ cd eshop_proj/
-voclabs:~/environment/eshop_proj (main) $ cd eshop_proj/
-(eshopenv) voclabs:~/environment/eshop_proj (main) $ pip install -r requirements.txt
-(eshopenv) voclabs:~/environment/eshop_proj (main) $ python manage.py migrate
+Secure Deployment of CharityConnect Cloud-Based Web Application with Jenkins 
+
+Features
+
+Material design based UI.
+Login and Signup functionality.
+Customer can register and purchase the product.
+See the order history and edit order.
+
+Technology Used
+
+MVT
+HTML/CSS/Javascript
+Git
+Django
 
 Installation:
 
