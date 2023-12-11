@@ -30,4 +30,4 @@ pip install eshop-cart==1.0.0
 sqlite-devel
 pip install pysqlite3
 
-test
+
