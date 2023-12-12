@@ -16,8 +16,8 @@ Git
 Django
 
 Installation:
-
-pip install -r requirements.txt
+python3 -m pip install django-environ 
+python3 -m pip install -r requirements.txt
 
 // Delete existing db.sqlite3
 
@@ -34,7 +34,9 @@ Password : arjun@123
 
 
 Add Products & Categories from admin
-https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com/admin
+
+http://127.0.0.1:8080
+http://http://127.0.0.1:8080/admin
 
 Add new Library 
 pip install eshop-cart==1.0.0
