@@ -1,6 +1,13 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "4.15.1"
+    }
+  }
+}
 provider "aws" {
   region     = "us-east-1"
-  version    = "~> 2.26"
   access_key = "ASIAT2P6UD6LH2YO4ISI"    # Replace with your actual access key
   secret_key = "TDQQlZa134m0ZENf22dwXeGzRloxuGYRBK0M4Csn" # Replace with your actual secret key
   // token      = "your-session-token"
