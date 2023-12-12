@@ -20,6 +20,8 @@ pipeline {
             steps {
                 // Run Django unit tests
                 sh 'sudo yum install -y sqlite-devel'
+                sh 'sudo yum install -y gcc'
+                sh 'sudo yum install python-devel'
                 sh 'python -m venv venv'
                 sh '. venv/bin/activate'
                 sh 'pip install -r requirements.txt'
@@ -50,7 +52,7 @@ pipeline {
                 // Install dependencies and run migrations on EC2
                 script {
                     sshagent([CREDENTIALS_ID]) {
-                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && sudo yum install python -y && sudo yum install pip -y && sudo yum install -y sqlite-devel &&python -m venv venv && source venv/bin/activate && pip install -r requirements.txt && python manage.py migrate'"
+                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && sudo yum install python -y && sudo yum install pip -y && sudo yum install -y sqlite-devel && sudo yum install -y gcc && sudo yum install -y python-devel && python -m venv venv && source venv/bin/activate && pip install -r requirements.txt && python manage.py migrate'"
                     }
                 }
             }
