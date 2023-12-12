@@ -10,7 +10,7 @@ provider "aws" {
   region     = "us-east-1"
   access_key = "ASIAT2P6UD6LH2YO4ISI"    # Replace with your actual access key
   secret_key = "TDQQlZa134m0ZENf22dwXeGzRloxuGYRBK0M4Csn" # Replace with your actual secret key
-  // token      = "your-session-token"
+  token      = "FwoGZXIvYXdzEMj//////////wEaDHQ83tEVyFU5Qof+WCLLAcIVCeck3WBWAXkrb78pxHTHFhUNr6HG29o0sAutUyEYi5QenfGKRwwFvXq33KBezetlx5p0Ipq8h5u5X6eg/d9BYxmKNcXfF0dWZnDW9rNQHvTGITsr5zGjBJo/Aj8Mm0gPRSGPsYPfy15V5Bym+cNQ/ODZ5GIYKORpbkjFUCkeBEyJeaeQNVaRCW+tgb9wn9Ia470wDADb9Kl6Mz3tvJ2PANlougcVlm9g5B5StGsNSWX5le7IFMLVfvnufmbAtBHI+PqbuRpnVLGxKJ/b4asGMi3kigQgyQNarqRPItfrzKiuNoA8VdySs3jZLWM2i4pYEQdldEjsn/UEecXCGVE="
   }   
 
 data "aws_ami" "latest_ubuntu" {
