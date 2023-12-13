@@ -80,6 +80,19 @@ pipeline {
         }
     }
 
+        stage('OWASP ZAP Scan') {
+                steps {
+                    script {
+                        // Start ZAP in daemon mode
+                        sh 'zaproxy -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true &'
+                        // Sleep for a bit to allow ZAP to start
+                        sh 'sleep 10'
+                        // Perform the scan
+                        sh "zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' ${ZAP_TARGET_URL}"
+                    }
+                }
+            }
+
     post {
         always {
             echo 'Deployment process complete.'
