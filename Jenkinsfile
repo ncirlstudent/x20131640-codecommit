@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        // Define variables
         EC2_USER = 'ec2-user'
         EC2_HOST = '52.208.23.177'
         PROJECT_DIR = '/home/ec2-user/app'
@@ -17,20 +16,7 @@ pipeline {
             }
         }
 
-        // Uncomment and update these stages as needed
-        // stage('Test') {
-        //     steps {
-        //         // Run Django unit tests
-        //         // ...
-        //     }
-        // }
-
-        // stage('Build') {
-        //     steps {
-        //         // Collect static files, etc.
-        //         // ...
-        //     }
-        // }
+        // ... Other stages ...
 
         stage('SonarQube Analysis') {
             steps {
@@ -48,7 +34,6 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // Transfer files to EC2
                 script {
                     sshagent(credentials: ['keypair']) {
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} mkdir -p ${PROJECT_DIR}"
@@ -60,7 +45,6 @@ pipeline {
 
         stage('Install Requirements and Migrate') {
             steps {
-                // Install dependencies and run migrations on EC2
                 script {
                     sshagent(credentials: ['keypair']) {
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && sudo yum install python3 -y && sudo yum install -y sqlite-devel && sudo yum install -y gcc && sudo yum install -y python3-devel && sudo pip3 install -r requirements.txt && sudo python3 manage.py migrate'"
@@ -71,7 +55,6 @@ pipeline {
 
         stage('Restart Application') {
             steps {
-                // Restart your application (e.g., using Gunicorn)
                 script {
                     sshagent(credentials: ['keypair']){
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && chmod +x start.sh && ./start.sh'"
@@ -79,20 +62,17 @@ pipeline {
                 }
             }
         }
-    }
 
         stage('OWASP ZAP Scan') {
-                steps {
-                    script {
-                        // Start ZAP in daemon mode
-                        sh 'zaproxy -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true &'
-                        // Sleep for a bit to allow ZAP to start
-                        sh 'sleep 10'
-                        // Perform the scan
-                        sh "zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' ${ZAP_TARGET_URL}"
-                    }
+            steps {
+                script {
+                    sh 'zaproxy -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true &'
+                    sh 'sleep 10'
+                    sh "zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' ${ZAP_TARGET_URL}"
                 }
             }
+        }
+    }
 
     post {
         always {
