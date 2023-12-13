@@ -55,7 +55,7 @@ pipeline {
                 // Install dependencies and run migrations on EC2
                 script {
                     sshagent(credentials: ['keypair']) {
-                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && sudo yum install python3 -y && sudo yum install pip3 -y && sudo python -m pip3 install virtualenv && sudo yum install -y sqlite-devel && sudo yum install -y gcc && sudo yum install -y python3-devel && pip3 install -r requirements.txt && python manage.py migrate'"
+                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && sudo yum install python3 -y && sudo yum install -y sqlite-devel && sudo yum install -y gcc && sudo yum install -y python3-devel && pip3 install -r requirements.txt && python manage.py migrate'"
                     }
                 }
             }
