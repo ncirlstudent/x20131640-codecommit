@@ -39,15 +39,13 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONARQUBE_TOKEN')]) {
-                    sh '''
-                        sonar-scanner \
-                        -Dsonar.projectKey="x20131640-SonarQube" \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url="http://54.75.57.149:9000" \
-                        -Dsonar.login="$squ_955391d6a10555e7e8130225cd42db9d3e089095"
-                    '''
-                }
+                sh '''
+                    sonar-scanner \
+                    -Dsonar.projectKey="x20131640-SonarQube" \
+                    -Dsonar.sources=. \
+                    -Dsonar.host.url="http://54.75.57.149:9000" \
+                    -Dsonar.login="squ_c14c721db42871627b3fe0ccc43b6719163beec0"
+                '''
             }
         }
 
