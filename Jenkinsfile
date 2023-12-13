@@ -6,6 +6,7 @@ pipeline {
         EC2_HOST = '52.208.23.177'
         PROJECT_DIR = '/home/ec2-user/app'
         ZAP_TARGET_URL = 'http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com:8080/'
+        ZAP_PATH = '/opt/zaproxy'
     }
 
     stages {
@@ -66,13 +67,14 @@ pipeline {
         stage('OWASP ZAP Scan') {
             steps {
                 script {
-                    sh 'zaproxy -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true &'
+                    // Start ZAP in daemon mode using the full path
+                    sh "${ZAP_PATH}/zaproxy -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true &"
                     sh 'sleep 10'
+                    // Ensure zap-cli is installed and available in the PATH, or specify its full path
                     sh "zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' ${ZAP_TARGET_URL}"
                 }
             }
         }
-    }
 
     post {
         always {
