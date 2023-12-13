@@ -6,6 +6,7 @@ pipeline {
         EC2_USER = 'ec2-user'
         EC2_HOST = '52.208.23.177'
         PROJECT_DIR = '/home/ec2-user/app'
+        ZAP_TARGET_URL = 'http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com:8080/'
     }
 
     stages {
