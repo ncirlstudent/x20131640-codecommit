@@ -53,12 +53,13 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    // Assuming you have Python and necessary dependencies installed
-                    sh "sonar-scanner \
-                        -Dsonar.projectKey=${x20131640-SonarQube} \
+                    sh '''
+                        sonar-scanner \
+                        -Dsonar.projectKey="x20131640-SonarQube" \
                         -Dsonar.sources=. \
-                        -Dsonar.host.url=${http://54.75.57.149:9000/} \
-                        -Dsonar.login=${credentials('squ_c14c721db42871627b3fe0ccc43b6719163beec0')}" // 
+                        -Dsonar.host.url="http://54.75.57.149:9000" \
+                        -Dsonar.login="${credentials('squ_c14c721db42871627b3fe0ccc43b6719163beec0')}"
+                    '''
                 }
             }
         }
