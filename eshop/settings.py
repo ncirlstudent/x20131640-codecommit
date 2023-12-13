@@ -141,7 +141,7 @@ USE_TZ = True
 #   os.path.join(BASE_DIR, 'static/'),
 # )
 
-# STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'static'
 
 STATIC_URL = 'static/'
 
