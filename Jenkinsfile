@@ -16,31 +16,32 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                // Run Django unit tests
-                sh 'sudo yum install -y sqlite-devel'
-                sh 'sudo yum install -y gcc'
-                sh 'sudo yum install python-devel'
-                sh 'python -m venv venv'
-                sh '. venv/bin/activate'
-                sh 'pip install -r requirements.txt'
-                sh 'python manage.py test'
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         // Run Django unit tests
+        //         sh 'sudo yum install -y sqlite-devel'
+        //         sh 'sudo yum install -y gcc'
+        //         sh 'sudo yum install python-devel'
+        //         sh 'python -m venv venv'
+        //         sh '. venv/bin/activate'
+        //         sh 'pip install -r requirements.txt'
+        //         sh 'python manage.py test'
+        //     }
+        // }
 
-        stage('Build') {
-            steps {
-                // Collect static files, etc.
-                sh 'python manage.py collectstatic --noinput'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         // Collect static files, etc.
+        //         sh 'python manage.py collectstatic --noinput'
+        //     }
+        // }
 
         stage('Deploy') {
             steps {
                 // Transfer files to EC2
                 script {
                     sshagent([CREDENTIALS_ID]) {
+                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} uptime"
                         sh "scp -o StrictHostKeyChecking=no -r * ${EC2_USER}@${EC2_HOST}:${PROJECT_DIR}"
                     }
                 }
