@@ -45,7 +45,7 @@ pipeline {
                         -Dsonar.projectKey="x20131640-SonarQube" \
                         -Dsonar.sources=. \
                         -Dsonar.host.url="http://54.75.57.149:9000" \
-                        -Dsonar.login="$SONARQUBE_TOKEN"
+                        -Dsonar.login="$squ_955391d6a10555e7e8130225cd42db9d3e089095"
                     '''
                 }
             }
