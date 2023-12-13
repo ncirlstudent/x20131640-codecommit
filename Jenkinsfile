@@ -43,7 +43,7 @@ pipeline {
                 script {
                     sshagent(credentials: ['keypair']) {
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} mkdir -p ${PROJECT_DIR}"
-                        sh "scp -o StrictHostKeyChecking=no -r * ${EC2_USER}@${EC2_HOST}:${PROJECT_DIR}"
+                        sh "scp -o StrictHostKeyChecking=no -r . ${EC2_USER}@${EC2_HOST}:${PROJECT_DIR}"
                     }
                 }
             }
