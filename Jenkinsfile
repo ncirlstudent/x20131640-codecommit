@@ -34,6 +34,14 @@ pipeline {
             }
         }
 
+        stage('Debug ZAP CLI') {
+            steps {
+                sh 'ls -l /var/lib/jenkins/.local/bin/zap-cli' // Check if zap-cli exists and its permissions
+                sh 'which zap-cli' // Check if zap-cli is in PATH
+            }
+        }
+
+
         stage('Deploy') {
             steps {
                 script {
@@ -65,16 +73,16 @@ pipeline {
             }
         }
 
-        stage('OWASP ZAP Scan') {
-            steps {
-                script {
-                    sh "${ZAP_PATH}/zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true &"
-                    sh 'sleep 10'
-                    sh "${ZAP_CLI_PATH} quick-scan --self-contained --start-options '-config api.disablekey=true' ${ZAP_TARGET_URL}"
-                    }
-                }
-            }
-        }
+       // stage('OWASP ZAP Scan') {
+       //     steps {
+        //        script {
+        //            sh "${ZAP_PATH}/zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true &"
+          //          sh 'sleep 10'
+            //        sh "${ZAP_CLI_PATH} quick-scan --self-contained --start-options '-config api.disablekey=true' ${ZAP_TARGET_URL}"
+              //      }
+              //  }
+           // }
+       // }
 
     post {
         always {
