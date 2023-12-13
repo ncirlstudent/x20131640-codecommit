@@ -1,7 +1,8 @@
 #!/bin/bash
 # Navigate to your Django project directory
 cd /home/ec2-user/app
-
+set DJANGO_SETTINGS_MODULE="eshop.settings"
+set PYTHONPATH="/var/app/current:$PYTHONPATH"
 sudo chmod -R 755 static/
 sudo chmod -R 755 media/
 sudo python3 manage.py collectstatic --noinput
