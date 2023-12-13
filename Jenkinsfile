@@ -37,19 +37,6 @@ pipeline {
         //     }
         // }
 
-        stage('Deploy') {
-            steps {
-                // Transfer files to EC2
-                script {
-                    sshagent(credentials: ['keypair']) {
-                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} mkdir -p ${PROJECT_DIR}"
-                        //sh "rsync -avz --exclude './eshopenv/lib64' * ${EC2_USER}@${EC2_HOST}:${PROJECT_DIR}"
-                        sh "rsync -avz --exclude './eshopenv/lib64' * ${EC2_USER}@${EC2_HOST}:${PROJECT_DIR}"
-                    }
-                }
-            }
-        }
-
         stage('SonarQube Analysis') {
             steps {
                 script {
@@ -63,6 +50,21 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy') {
+            steps {
+                // Transfer files to EC2
+                script {
+                    sshagent(credentials: ['keypair']) {
+                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} mkdir -p ${PROJECT_DIR}"
+                        //sh "rsync -avz --exclude './eshopenv/lib64' * ${EC2_USER}@${EC2_HOST}:${PROJECT_DIR}"
+                        sh "rsync -avz --exclude './eshopenv/lib64' * ${EC2_USER}@${EC2_HOST}:${PROJECT_DIR}"
+                    }
+                }
+            }
+        }
+
+        
 
         stage('Install Requirements and Migrate') {
             steps {
