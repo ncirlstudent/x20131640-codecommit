@@ -1,21 +1,21 @@
 
-Secure Deployment of CharityConnect Cloud-Based Web Application with Jenkins 
+# Secure Deployment of CharityConnect Cloud-Based Web Application with Jenkins 
 
-Features
+## Features
 
 Material design based UI.
 Login and Signup functionality.
 Customer can register and purchase the product.
 See the order history and edit order.
 
-Technology Used
+## Technology Used
 
 MVT
 HTML/CSS/Javascript
 Git
 Django
 
-Installation:
+## Installation:
 
 python3 venv eshopenv 
 
@@ -25,26 +25,26 @@ source eshopenv/bin/activate
 
 python3 -m pip install -r requirements.txt
 
+Add new Library 
+python3 -m pip install eshop-cart==1.0.0
+
 python3 manage.py migrate
 
 python3 manage.py runserver 8080
 
-For Admin Login:
+## For Admin Login:
 python3 manage.py createsuperuser
 
 Email : Admin@gmail.com
 username: Admin
 Password : Admin@123
 
-
-Add Products & Categories from admin
+## Add Products & Categories from admin
 
 http://127.0.0.1:8080
-http://http://127.0.0.1:8080/admin
+http://127.0.0.1:8080/admin
 
-Add new Library 
-pip install eshop-cart==1.0.0
-sqlite-devel
-pip install pysqlite3
+
+
 
 
