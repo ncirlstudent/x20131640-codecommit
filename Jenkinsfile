@@ -72,6 +72,7 @@ pipeline {
                     sh 'sleep 10'
                     // Ensure zap-cli is installed and available in the PATH, or specify its full path
                     sh "zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' ${ZAP_TARGET_URL}"
+                    }
                 }
             }
         }
