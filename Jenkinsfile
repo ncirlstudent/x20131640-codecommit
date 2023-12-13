@@ -55,7 +55,7 @@ pipeline {
                 // Install dependencies and run migrations on EC2
                 script {
                     sshagent(credentials: ['keypair']) {
-                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && sudo yum install python3 -y && sudo yum install -y sqlite-devel && sudo yum install -y gcc && sudo yum install -y python3-devel && pip3 install -r requirements.txt && python3 manage.py migrate'"
+                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && sudo yum install python3 -y && sudo yum install -y sqlite-devel && sudo yum install -y gcc && sudo yum install -y python3-devel && pip3 install -r requirements.txt && python3 manage.py migrate &&  python3 manage.py collectstatic --noinput'"
                     }
                 }
             }
@@ -66,7 +66,7 @@ pipeline {
                 // Restart your application (e.g., using Gunicorn)
                 script {
                     sshagent(credentials: ['keypair']){
-                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && nohup python3 manage.py runserver 0.0.0.0:8080 &'"
+                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && nohup python3 manage.py runserver 0.0.0.0:8080 >/dev/null 2>&1'"
                     }
                 }
             }
