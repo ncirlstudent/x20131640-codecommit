@@ -7,7 +7,7 @@ pipeline {
         PROJECT_DIR = '/home/ec2-user/app'
         ZAP_TARGET_URL = 'http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com:8080/'
         ZAP_PATH = '/opt/zaproxy'
-        ZAP_CLI_PATH = '/var/lib/jenkins/.local/bin/zap-cli'
+        ZAP_CLI_PATH = '/local/bin/zap-cli'
     }
 
     stages {
