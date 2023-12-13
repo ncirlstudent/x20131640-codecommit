@@ -34,7 +34,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env.str('SECRET_KEY', 'sfjfjghf')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['http://127.0.0.1:8080/','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com:80', 'ec2-52-208-23-177.eu-west-1.compute.amazonaws.com', '*']
 CSRF_TRUSTED_ORIGINS = ['https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com','https://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com']
@@ -141,10 +141,14 @@ USE_TZ = True
 #   os.path.join(BASE_DIR, 'static/'),
 # )
 
-STATIC_ROOT = BASE_DIR / 'static'
+# STATIC_ROOT = BASE_DIR / 'static'
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
 
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+STATICFILES_DIRS = (
+  os.path.join(SITE_ROOT, 'static/'),
+)
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
