@@ -36,7 +36,7 @@ SECRET_KEY = env.str('SECRET_KEY', 'sfjfjghf')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.str('DEBUG', True)
 
-ALLOWED_HOSTS = ['http://127.0.0.1:8080/','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com:80']
+ALLOWED_HOSTS = ['http://127.0.0.1:8080/','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com:80', 'ec2-52-208-23-177.eu-west-1.compute.amazonaws.com']
 CSRF_TRUSTED_ORIGINS = ['https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com','https://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com']
 
 
