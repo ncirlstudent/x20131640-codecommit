@@ -34,10 +34,11 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env.str('SECRET_KEY', 'sfjfjghf')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.str('DEBUG', True)
+DEBUG = env.str('DEBUG', False)
 
-ALLOWED_HOSTS = ['http://127.0.0.1:8080/','*']
-CSRF_TRUSTED_ORIGINS = ['https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','http://X20131640.us-east-1.elasticbeanstalk.com','https://X20131640.us-east-1.elasticbeanstalk.com']
+
+ALLOWED_HOSTS = ['http://127.0.0.1:8080/','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com:80', 'ec2-52-208-23-177.eu-west-1.compute.amazonaws.com', '*']
+CSRF_TRUSTED_ORIGINS = ['https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com','https://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com']
 
 
 # Application definition
@@ -66,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'eshop.urls'
@@ -137,12 +139,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'static/'),
-)
-STATIC_URL = 'static/'
+# STATICFILES_DIRS = (
+#   os.path.join(BASE_DIR, 'static/'),
+# )
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, '/static/')]
 
-# STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_URL = 'static/'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'

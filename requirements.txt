@@ -11,3 +11,5 @@ eshop-cart==1.0.0
 pysqlite3
 pysqlite3-binary
 gunicorn
+wheel
+whitenoise
