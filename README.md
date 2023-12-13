@@ -16,21 +16,25 @@ Git
 Django
 
 Installation:
-python3 -m pip install django-environ 
+
+python3 venv eshopenv 
+
+python3 -m venv eshopenv
+
+source eshopenv/bin/activate 
+
 python3 -m pip install -r requirements.txt
 
-// Delete existing db.sqlite3
+python3 manage.py migrate
 
-python manage.py migrate
-
-python manage.py runserver 8080
+python3 manage.py runserver 8080
 
 For Admin Login:
-python manage.py createsuperuser
+python3 manage.py createsuperuser
 
-Email : arjun@gmail.com
-username: arjun
-Password : arjun@123
+Email : Admin@gmail.com
+username: Admin
+Password : Admin@123
 
 
 Add Products & Categories from admin
