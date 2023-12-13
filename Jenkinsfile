@@ -5,7 +5,7 @@ pipeline {
         // Define variables
         EC2_USER = 'ec2-user'
         EC2_HOST = '63.35.213.44'
-        PROJECT_DIR = '/opt/app'
+        PROJECT_DIR = '/home/ec2-user/app'
         CREDENTIALS_ID = credentials('keypair')
     }
 
