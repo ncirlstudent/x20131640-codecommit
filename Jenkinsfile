@@ -35,7 +35,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: '4fb67c25-fb98-4bae-844a-c4a16c66c39e', variable: 'SONARQUBE_TOKEN')]) {
                     sh '''
-                        /opt/sonar-scanner/bin/sonar-scanner \
+                        /opt/sonar-scanner/bin/sonar-scanner -X \
                         sonar-scanner \
                         -Dsonar.projectKey="x20131640-SonarQube" \
                         -Dsonar.sources=. \
