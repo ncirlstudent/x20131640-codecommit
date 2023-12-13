@@ -40,7 +40,7 @@ pipeline {
             steps {
                 // Transfer files to EC2
                 script {
-                    sshagent([CREDENTIALS_ID]) {
+                    sshagent(credentials: ['keypair']) {
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} uptime"
                         sh "scp -o StrictHostKeyChecking=no -r * ${EC2_USER}@${EC2_HOST}:${PROJECT_DIR}"
                     }
@@ -52,7 +52,7 @@ pipeline {
             steps {
                 // Install dependencies and run migrations on EC2
                 script {
-                    sshagent([CREDENTIALS_ID]) {
+                    sshagent(credentials: ['keypair']) {
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && sudo yum install python -y && sudo yum install pip -y && sudo yum install -y sqlite-devel && sudo yum install -y gcc && sudo yum install -y python-devel && python -m venv venv && source venv/bin/activate && pip install -r requirements.txt && python manage.py migrate'"
                     }
                 }
@@ -63,7 +63,7 @@ pipeline {
             steps {
                 // Restart your application (e.g., using Gunicorn)
                 script {
-                    sshagent([CREDENTIALS_ID]) {
+                    sshagent(credentials: ['keypair']){
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'sudo systemctl restart your_application_service'"
                     }
                 }
