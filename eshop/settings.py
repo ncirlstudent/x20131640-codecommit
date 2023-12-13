@@ -34,7 +34,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env.str('SECRET_KEY', 'sfjfjghf')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.str('DEBUG', True)
+DEBUG = env.str('DEBUG', False)
 
 
 ALLOWED_HOSTS = ['http://127.0.0.1:8080/','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com:80', 'ec2-52-208-23-177.eu-west-1.compute.amazonaws.com', '*']
@@ -144,8 +144,8 @@ USE_TZ = True
 # )
 #STATICFILES_DIRS = [os.path.join(BASE_DIR, '/static/')]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "/static/")
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_URL = 'static/'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
