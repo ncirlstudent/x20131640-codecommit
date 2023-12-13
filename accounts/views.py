@@ -22,16 +22,7 @@ class RegistrationView(CreateView):
         response = super().form_valid(form)
         self.send_sns_subsription(form.instance)
         return response
-
-    def send_sns_subsription(self, user):
-        sns_client = boto3.client('sns',region_name='us-east-1')
-        response = sns_client.subscribe(
-                TopicArn='arn:aws:sns:us-east-1:564782978045:account-topic',
-                Protocol='email', 
-                Endpoint=user.email 
-            )
-        
-
+    
 def logout_view(request):
     logout(request)
     return redirect(reverse('login'))

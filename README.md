@@ -21,16 +21,16 @@ python3 -m pip install -r requirements.txt
 
 // Delete existing db.sqlite3
 
-python manage.py migrate
+python3 manage.py migrate
 
-python manage.py runserver 8080
+python3 manage.py runserver 8080
 
 For Admin Login:
-python manage.py createsuperuser
+python3 manage.py createsuperuser
 
-Email : arjun@gmail.com
-username: arjun
-Password : arjun@123
+Email: ncirl@gmail.com
+Username: Admin
+Password : Admin@12345
 
 
 Add Products & Categories from admin
