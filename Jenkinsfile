@@ -66,7 +66,7 @@ pipeline {
                 // Restart your application (e.g., using Gunicorn)
                 script {
                     sshagent(credentials: ['keypair']){
-                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && nohup python3 manage.py runserver 0.0.0.0:8080'"
+                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && nohup python3 manage.py runserver 0.0.0.0:8080 &'"
                     }
                 }
             }
