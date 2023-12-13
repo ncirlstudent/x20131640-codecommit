@@ -5,7 +5,7 @@ pipeline {
         // Define variables
         EC2_USER = 'ec2-user'
         EC2_HOST = '63.35.213.44'
-        PROJECT_DIR = '/opt'
+        PROJECT_DIR = '/opt/app'
         CREDENTIALS_ID = credentials('keypair')
     }
 
@@ -41,7 +41,7 @@ pipeline {
                 // Transfer files to EC2
                 script {
                     sshagent(credentials: ['keypair']) {
-                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} uptime"
+                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} mkdir ${PROJECT_DIR}"
                         sh "scp -o StrictHostKeyChecking=no -r * ${EC2_USER}@${EC2_HOST}:${PROJECT_DIR}"
                     }
                 }
