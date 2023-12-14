@@ -41,7 +41,6 @@ pipeline {
             }
         }
 
-
         stage('Deploy') {
             steps {
                 script {
@@ -66,13 +65,13 @@ pipeline {
         stage('Restart Application') {
             steps {
                 script {
-                    sshagent(credentials: ['keypair']){
+                    sshagent(credentials: ['keypair']) {
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && chmod +x start.sh && ./start.sh'"
                     }
                 }
             }
         }
-
+    }
 
     post {
         always {
