@@ -73,16 +73,6 @@ pipeline {
             }
         }
 
-       // stage('OWASP ZAP Scan') {
-       //     steps {
-        //        script {
-        //            sh "${ZAP_PATH}/zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true &"
-          //          sh 'sleep 10'
-            //        sh "${ZAP_CLI_PATH} quick-scan --self-contained --start-options '-config api.disablekey=true' ${ZAP_TARGET_URL}"
-              //      }
-              //  }
-           // }
-       // }
 
     post {
         always {
