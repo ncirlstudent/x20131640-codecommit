@@ -34,7 +34,6 @@ pipeline {
             }
         }
 
-
         stage('Deploy') {
             steps {
                 script {
@@ -65,22 +64,20 @@ pipeline {
                 }
             }
         }
-    }
 
         stage('OWASP ZAP Scan') {
-        steps {
-            script {
-                // Start ZAP in daemon mode
-                sh "${ZAP_PATH}/zap.sh -daemon -port 8090 -host 0.0.0.0 -config api.disablekey=true &"
-                sh 'sleep 10' // Allow time for ZAP to start
-                // Example: Start a Spider scan using ZAP's REST API
-                sh 'curl http://localhost:8090/JSON/spider/action/scan/?url=${ZAP_TARGET_URL}'
-                // ... additional commands for scan control and result retrieval ...
+            steps {
+                script {
+                    // Start ZAP in daemon mode
+                    sh "${ZAP_PATH}/zap.sh -daemon -port 8090 -host 0.0.0.0 -config api.disablekey=true &"
+                    sh 'sleep 10' // Allow time for ZAP to start
+                    // Example: Start a Spider scan using ZAP's REST API
+                    sh 'curl http://localhost:8090/JSON/spider/action/scan/?url=${ZAP_TARGET_URL}'
+                    // ... additional commands for scan control and result retrieval ...
+                }
             }
         }
     }
-
-
 
     post {
         always {
