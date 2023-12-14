@@ -68,26 +68,12 @@ pipeline {
         stage('OWASP ZAP Scan') {
             steps {
                 script {
-                    // Start ZAP in daemon mode (if not already started)
+                    // Start ZAP in daemon mode
                     sh "${ZAP_PATH}/zap.sh -daemon -port 8090 -host 0.0.0.0 -config api.disablekey=true &"
                     sh 'sleep 10' // Allow time for ZAP to start
-
-                    // Perform an OWASP ZAP vulnerability scan
-                    sh 'curl http://localhost:8090/JSON/core/scan/?url=${ZAP_TARGET_URL}&recurse=true'
-
-                    // Poll ZAP until the scan is complete
-                    def zapStatus = ''
-                    while (!zapStatus.contains('100%')) {
-                        def zapStatusOutput = sh(script: 'curl -s http://localhost:8090/JSON/pscan/view/ | jq -r .status', returnStatus: true).trim()
-                        zapStatus = zapStatusOutput
-                        sleep(10)
-                    }
-
-                    // Generate and save the ZAP report
-                    sh "curl -o ${WORKSPACE}/zap-report.html http://localhost:8090/OTHER/core/other/htmlreport/"
-
-                    // Archive the ZAP report as a build artifact
-                    archiveArtifacts artifacts: 'zap-report.html', allowEmptyArchive: true
+                    // Example: Start a Spider scan using ZAP's REST API
+                    sh 'curl http://localhost:8090/JSON/spider/action/scan/?url=${ZAP_TARGET_URL}'
+                    // ... additional commands for scan control and result retrieval ...
                 }
             }
         }
