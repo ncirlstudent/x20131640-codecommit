@@ -34,12 +34,6 @@ pipeline {
             }
         }
 
-        stage('Debug ZAP CLI') {
-            steps {
-                sh 'ls -l /var/lib/jenkins/.local/bin/zap-cli' // Check if zap-cli exists and its permissions
-                sh 'which zap-cli' // Check if zap-cli is in PATH
-            }
-        }
 
         stage('Deploy') {
             steps {
@@ -69,6 +63,19 @@ pipeline {
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && chmod +x start.sh && ./start.sh'"
                     }
                 }
+            }
+        }
+    }
+
+    stage('OWASP ZAP Scan') {
+    steps {
+        script {
+            // Start ZAP in daemon mode
+            sh "${ZAP_PATH}/zap.sh -daemon -port 8090 -host 0.0.0.0 -config api.disablekey=true &"
+            sh 'sleep 10' // Allow time for ZAP to start
+            // Example: Start a Spider scan using ZAP's REST API
+            sh 'curl http://localhost:8090/JSON/spider/action/scan/?url=${ZAP_TARGET_URL}'
+            // ... additional commands for scan control and result retrieval ...
             }
         }
     }
