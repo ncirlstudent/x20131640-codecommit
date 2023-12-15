@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         EC2_USER = 'ec2-user'
-        EC2_HOST = '34.242.2240.184'
+        EC2_HOST = '34.242.224.184'
         PROJECT_DIR = '/home/ec2-user/app'
         ZAP_TARGET_URL = 'http://ec2-34-242-224-184.eu-west-1.compute.amazonaws.com/:8080/'
         ZAP_PATH = '/opt/zaproxy'
