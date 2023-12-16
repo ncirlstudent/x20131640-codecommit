@@ -20,7 +20,7 @@ class RegistrationView(CreateView):
     success_url = '/accounts/login'
     def form_valid(self, form):
         response = super().form_valid(form)
-        self.send_sns_subsription(form.instance)
+        #self.send_sns_subsription(form.instance)
         return response
 
     def send_sns_subsription(self, user):
