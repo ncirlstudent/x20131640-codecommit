@@ -13,15 +13,6 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'price', 'slug',)
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
-        if not change:  
-            sqs = boto3.client('sqs', region_name="us-east-1")
-            # queue_url = 'https://sqs.us-east-1.amazonaws.com/564782978045/sqs-products'
-            # # Message à envoyer
-            # message_body = f'We have recently added a new product. Check out the new : {obj.name}'
-            # response = sqs.send_message(
-            #                 QueueUrl=queue_url,
-            #                 MessageBody=message_body
-            #             )
 
 
 class CartAdmin(admin.ModelAdmin):
