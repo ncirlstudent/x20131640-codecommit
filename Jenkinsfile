@@ -2,10 +2,12 @@ pipeline {
     agent any
 
     environment {
-        // Define variables
         EC2_USER = 'ec2-user'
         EC2_HOST = '52.208.23.177'
         PROJECT_DIR = '/home/ec2-user/app'
+        ZAP_TARGET_URL = 'http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com/:8080/'
+        ZAP_PATH = '/opt/zaproxy'
+        ZAP_CLI_PATH = '/local/bin/zap-cli'
     }
 
     stages {
@@ -16,20 +18,7 @@ pipeline {
             }
         }
 
-        // Uncomment and update these stages as needed
-        // stage('Test') {
-        //     steps {
-        //         // Run Django unit tests
-        //         // ...
-        //     }
-        // }
-
-        // stage('Build') {
-        //     steps {
-        //         // Collect static files, etc.
-        //         // ...
-        //     }
-        // }
+        // ... Other stages ...
 
         stage('SonarQube Analysis') {
             steps {
@@ -47,7 +36,6 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // Transfer files to EC2
                 script {
                     sshagent(credentials: ['keypair']) {
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} mkdir -p ${PROJECT_DIR}"
@@ -59,7 +47,6 @@ pipeline {
 
         stage('Install Requirements and Migrate') {
             steps {
-                // Install dependencies and run migrations on EC2
                 script {
                     sshagent(credentials: ['keypair']) {
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && sudo yum install python3 -y && sudo yum install -y sqlite-devel && sudo yum install -y gcc && sudo yum install -y python3-devel && sudo pip3 install -r requirements.txt && sudo python3 manage.py migrate'"
@@ -70,11 +57,23 @@ pipeline {
 
         stage('Restart Application') {
             steps {
-                // Restart your application (e.g., using Gunicorn)
                 script {
-                    sshagent(credentials: ['keypair']){
+                    sshagent(credentials: ['keypair']) {
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && chmod +x start.sh && ./start.sh'"
                     }
+                }
+            }
+        }
+
+        stage('OWASP ZAP Scan') {
+            steps {
+                script {
+                    // Start ZAP in daemon mode
+                    sh "${ZAP_PATH}/zap.sh -daemon -port 8090 -host 0.0.0.0 -config api.disablekey=true &"
+                    sh 'sleep 10' // Allow time for ZAP to start
+                    // Example: Start a Spider scan using ZAP's REST API
+                    sh 'curl http://localhost:8090/JSON/spider/action/scan/?url=${ZAP_TARGET_URL}'
+                    // ... additional commands for scan control and result retrieval ...
                 }
             }
         }

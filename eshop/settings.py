@@ -37,8 +37,8 @@ SECRET_KEY = env.str('SECRET_KEY', 'sfjfjghf')
 DEBUG = env.str('DEBUG', False)
 
 
-ALLOWED_HOSTS = ['http://127.0.0.1:8080/','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com:80', 'ec2-52-208-23-177.eu-west-1.compute.amazonaws.com', '*']
-CSRF_TRUSTED_ORIGINS = ['https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com','https://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com']
+ALLOWED_HOSTS = ['http://127.0.0.1:8080/','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com:80','ec2-52-208-23-177.eu-west-1.compute.amazonaws.com','*']
+CSRF_TRUSTED_ORIGINS = ['https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com','https://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com',]
 
 
 # Application definition
@@ -167,5 +167,5 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL =  None
 AWS_S3_VERITY = True
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:564782978045:RedshiftSNS' 
-AWS_SNS_MAILING_LIST_TOPIC_ARN = 'arn:aws:sns:us-east-1:564782978045:Subscribe-list.fifo'
+#AWS_SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:564782978045:RedshiftSNS' 
+#AWS_SNS_MAILING_LIST_TOPIC_ARN = 'arn:aws:sns:us-east-1:564782978045:Subscribe-list.fifo'
