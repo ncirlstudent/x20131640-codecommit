@@ -61,7 +61,7 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: ['keypair']) {
-                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && chmod +x start.sh && ./start.sh'"
+                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'cd ${PROJECT_DIR} && sudo chmod +x start.sh && sudo ./start.sh'"
                     }
                 }
             }
