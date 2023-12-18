@@ -38,8 +38,10 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: ['keypair']) {
-                        sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'sudo mkdir -p ${PROJECT_DIR}'"
-                        rsync -avz --exclude './eshopenv/lib64' --rsync-path='sudo rsync' * ${EC2_USER}@${EC2_HOST}:${PROJECT_DIR}
+                    sh """
+                       ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'mkdir -p ${PROJECT_DIR}'
+                       rsync -avz --exclude './eshopenv/lib64' --rsync-path='sudo rsync' * ${EC2_USER}@${EC2_HOST}:${PROJECT_DIR}
+                    """
                     }
                 }
             }
