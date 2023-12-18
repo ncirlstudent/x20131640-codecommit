@@ -16,7 +16,7 @@ from pathlib import Path
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, True)
+    DEBUG=(bool, False)
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -34,11 +34,11 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env.str('SECRET_KEY', 'sfjfjghf')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.str('DEBUG', True)
+DEBUG = env.str('DEBUG', False)
 
 
-ALLOWED_HOSTS = ['http://127.0.0.1:8080/','http://127.0.0.1:8080/admin/','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com:80','ec2-52-208-23-177.eu-west-1.compute.amazonaws.com','*']
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8080/','http://127.0.0.1:8080/admin/','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com','https://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com',]
+ALLOWED_HOSTS = ['http://127.0.0.1:8080/','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com:80','ec2-52-208-23-177.eu-west-1.compute.amazonaws.com','*']
+CSRF_TRUSTED_ORIGINS = ['https://48253dcce37b46ce9d18f3ee16b69de2.vfs.cloud9.us-east-1.amazonaws.com','http://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com','https://ec2-52-208-23-177.eu-west-1.compute.amazonaws.com',]
 
 
 # Application definition
@@ -158,46 +158,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 
-#AWS_ACCESS_KEY_ID = 'ASIAYG75QKP6U4BKIBWQ'
-#AWS_SECRET_ACCESS_KEY = 'Dvbx5oqQARn7TLeJYeoC/VrYdb1RnPOaqeTogdv8'
-#AWS_STORAGE_BUCKET_NAME = 'x20131640-image-bucket'
-#AWS_S3_SIGNATURE_NAME = 's3v4',
-#AWS_S3_REGION_NAME = 'eu-west-1'
-#AWS_S3_FILE_OVERWRITE = False
-#AWS_DEFAULT_ACL =  None
-#AWS_S3_VERITY = True
-#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = 'ASIAYG75QKP6U4BKIBWQ'
+AWS_SECRET_ACCESS_KEY = 'Dvbx5oqQARn7TLeJYeoC/VrYdb1RnPOaqeTogdv8'
+AWS_STORAGE_BUCKET_NAME = 'x20131640-s3-bucket'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'eu-west-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL =  None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #AWS_SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:564782978045:RedshiftSNS' 
 #AWS_SNS_MAILING_LIST_TOPIC_ARN = 'arn:aws:sns:us-east-1:564782978045:Subscribe-list.fifo'
-
-
-
-# AWS credentials
-AWS_ACCESS_KEY_ID = 'ASIAT2P6UD6LFIDWHC7H'
-AWS_SECRET_ACCESS_KEY = 'd/SaWua/hHQsVjiWpSoT9k5mGIVZZ/peixDPfJIs'
-AWS_STORAGE_BUCKET_NAME = 'x20131640-image-bucket'
-AWS_S3_REGION_NAME = 'us-east-1'
-
-# Use Amazon S3 for storage for uploaded media files.
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-# Static files (CSS, JavaScript, images)
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-STATIC_URL = f'http://{ec2-52-208-23-177.eu-west-1.compute.amazonaws.com/}/static/'
-MEDIA_URL = f'http://{ec2-52-208-23-177.eu-west-1.compute.amazonaws.com/}/media/'
-
-# Set the AWS S3 endpoint
-AWS_S3_ENDPOINT_URL = f'http://s3-{ec2-52-208-23-177.eu-west-1.compute.amazonaws.com/}.amazonaws.com/'
-
-# Optional: Set the S3 bucket subdirectory (e.g., 'media/' or 'static/')
-# AWS_S3_OBJECT_PARAMETERS = {
-#     'CacheControl': 'max-age=86400',
-# }
-
-# Optional: Set the CloudFront distribution domain for serving media files
-# AWS_CLOUDFRONT_DOMAIN = 'your_cloudfront_domain'
-# MEDIA_URL = f'https://{AWS_CLOUDFRONT_DOMAIN}/media/'
-
-# Optional: Configure S3 to use a custom domain (e.g., images.example.com)
-# AWS_S3_CUSTOM_DOMAIN = 'images.example.com'
-# MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
