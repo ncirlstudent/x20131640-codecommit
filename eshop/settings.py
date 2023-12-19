@@ -159,11 +159,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 
-#AWS_STORAGE_BUCKET_NAME = 'x20131640-s3-bucket'
-#AWS_S3_SIGNATURE_NAME = 's3v4',
-#AWS_S3_REGION_NAME = 'eu-west-1'
-#AWS_S3_FILE_OVERWRITE = False
-#AWS_DEFAULT_ACL =  None
-#AWS_S3_VERITY = True
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
