@@ -159,8 +159,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 
-#AWS_ACCESS_KEY_ID = 'ASIAYG75QKP6U4BKIBWQ'
-#AWS_SECRET_ACCESS_KEY = 'Dvbx5oqQARn7TLeJYeoC/VrYdb1RnPOaqeTogdv8'
 #AWS_STORAGE_BUCKET_NAME = 'x20131640-s3-bucket'
 #AWS_S3_SIGNATURE_NAME = 's3v4',
 #AWS_S3_REGION_NAME = 'eu-west-1'
@@ -168,5 +166,4 @@ LOGIN_REDIRECT_URL = '/'
 #AWS_DEFAULT_ACL =  None
 #AWS_S3_VERITY = True
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-#AWS_SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:564782978045:RedshiftSNS' 
-#AWS_SNS_MAILING_LIST_TOPIC_ARN = 'arn:aws:sns:us-east-1:564782978045:Subscribe-list.fifo'
+
