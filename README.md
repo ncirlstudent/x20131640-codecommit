@@ -59,6 +59,51 @@ The deployment of CharityConnect follows a CI/CD approach using Jenkins. The inf
 4. **Run the Application**:
    - Access the deployed application via the provided EC2 public IP or domain.
 
+## Installation
+To set up the project locally, follow these steps:
+
+1. **Create and Activate Virtual Environment**:
+   ```bash
+   python3 -m venv eshopenv
+   source eshopenv/bin/activate
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   python3 -m pip install -r requirements.txt
+   ```
+
+3. **Add New Library**:
+   ```bash
+   python3 -m pip install eshop-cart==1.0.0
+   ```
+
+4. **Run Migrations**:
+   ```bash
+   python3 manage.py migrate
+   ```
+
+5. **Run the Server**:
+   ```bash
+   python3 manage.py runserver 8080
+   ```
+
+## For Admin Login
+To create an admin user, run the following command:
+
+```bash
+python3 manage.py createsuperuser
+```
+
+- **Email**: Admin@gmail.com
+- **Username**: Admin
+- **Password**: Admin@123
+
+You can then add products and categories from the admin panel:
+- [Admin Panel](http://127.0.0.1:8080/admin)
+
+Access the application locally at [http://127.0.0.1:8080](http://127.0.0.1:8080).
+
 ## Security Considerations
 - **OWASP Sonarqube** is used to scan the codebase to identify vulnerabilities before deployment.
 - **Jenkins Pipeline** includes security testing to ensure that each build adheres to industry standards.
@@ -74,9 +119,6 @@ The deployment of CharityConnect follows a CI/CD approach using Jenkins. The inf
 - **Payment Integration**: Adding secure payment gateways to support monetary donations.
 - **User Roles**: Enhancing the platform to include multiple user roles with different levels of access.
 - **Analytics Dashboard**: For non-profits to track donations and user engagement.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 **Developer**: Arjun Jadhav  
