@@ -1,7 +1,10 @@
 
-# Secure Deployment of CharityConnect Cloud-Based Web Application with Jenkins 
+# CharityConnect - Secure Cloud-Based Web Application
 
-123
+## Project Overview
+CharityConnect is a cloud-based platform designed to empower non-profit organizations by improving their reach, awareness and fundraising capabilities. This project leverages cloud infrastructure to simplify the donation and item purchasing process, especially during challenging times, such as harsh winters when the need for donations peaks.
+
+The platform aims to enhance efficiency and scalability, providing a centralized way for non-profits to connect with donors and volunteers. This project was built using AWS services, Jenkins for CI/CD and Terraform for infrastructure as code, ensuring a reliable, automated and secure deployment process.
 
 ## Features
 
