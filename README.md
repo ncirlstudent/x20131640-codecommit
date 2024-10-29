@@ -124,6 +124,3 @@ Access the application locally at [http://127.0.0.1:8080](http://127.0.0.1:8080)
 **Developer**: Arjun Jadhav  
 **Email**: [Arjunjadhav1993@outlook.com](mailto:Arjunjadhav1993@outlook.com)  
 **LinkedIn**: [linkedin.com/in/arjunjadhav](https://linkedin.com/in/arjunjadhav)
-
-## Video Demonstration
-Watch the full project demo [here](https://youtu.be/TUdjQDRFuQ4).
